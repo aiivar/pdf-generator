@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 7.9.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="listPdf" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1fe9eeb7-3620-41a1-ab14-9091a8f30dcf">
+	<subDataset name="listDataset" uuid="6bdbb077-fa01-4c5a-a9ba-25c91ed7d0f3">
+		<field name="name" class="java.lang.String">
+			<fieldDescription><![CDATA[_THIS]]></fieldDescription>
+		</field>
+	</subDataset>
+	<parameter name="names" class="java.util.Collection"/>
+	<title>
+		<band height="52" splitType="Stretch">
+			<textField>
+				<reportElement x="240" y="8" width="104" height="36" uuid="8d02bb70-0bbe-480e-9fe3-74e1c7d6b312"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Report"]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="14" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="38" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<componentElement>
+				<reportElement x="32" y="0" width="490" height="51" uuid="8ac717f8-fa13-4152-a5ce-11f97cd645bb"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="listDataset" uuid="3549738e-5655-43b6-b185-680f9ee8e170">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{names})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="51" width="490">
+						<textField>
+							<reportElement x="0" y="0" width="490" height="51" uuid="d9776f4b-1afc-4ce1-8aa5-2a7e67c626b1"/>
+							<textElement verticalAlignment="Middle">
+								<font size="16"/>
+							</textElement>
+							<textFieldExpression><![CDATA["Hello " + $F{name} + "!"]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

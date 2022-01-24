@@ -1,0 +1,64 @@
+POST http://localhost:8080/api/pdf/list
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJBaXZhciIsInN1YiI6InJlc3QtYXBpIiwiZW1haWwiOiJhaXZhckBhaXZhci5ydSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NDMwNjcxMjMsImV4cCI6MTY0MzA2ODkyM30.Da7Fzc8MKikZBcdf-EcWj0-jgLCdySx6UAgnxfAJ80c
+
+{
+  "list": [
+    "Aivar",
+    "Aivar2",
+    "Aivar3",
+    "Aivar4"
+  ]
+}
+
+###
+POST http://localhost:8080/api/admin/block/1
+
+
+###
+POST http://localhost:8080/api/pdf/simple
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJBaXZhciIsInN1YiI6InJlc3QtYXBpIiwiZW1haWwiOiJhaXZhckBhaXZhci5ydSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NDMwNjcxMjMsImV4cCI6MTY0MzA2ODkyM30.Da7Fzc8MKikZBcdf-EcWj0-jgLCdySx6UAgnxfAJ80c
+
+{
+  "firstName": "aivar",
+  "lastName": "minsafin"
+}
+###
+POST http://localhost:8080/api/auth/refresh?refreshToken=9c918ccf-d7e4-40b1-8d09-c6541b8803eb
+Content-Type: application/x-www-form-urlencoded
+
+
+###
+POST http://localhost:8080/api/auth/signin
+Content-Type: application/json
+
+{
+  "email": "aivar@aivar.ru",
+  "password": "123"
+}
+###
+
+#{
+#  "token": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJBaXZhciIsInN1YiI6InJlc3QtYXBpIiwiZW1haWwiOiJhaXZhckBhaXZhci5ydSIsInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJpYXQiOjE2NDMwNDY0NzgsImV4cCI6MTY0MzA0ODI3OH0.oQuizwgObZH9K79ekLOmIYhiix_d1srsAWWwQ1Fz_pw",
+#  "refreshToken": "cf74a1f4-da54-4158-b060-4786967e1e8f",
+#  "email": "aivar@aivar.ru"
+#}
+
+###
+POST localhost:8080/api/auth/signup
+Content-Type: application/json
+
+{
+  "email": "aivar@aivar.ru",
+  "password": "123"
+}
+
+###
+POST localhost:8080/api/pdf/simple
+Content-Type: application/json
+
+{
+  "firstName": "Aivar",
+  "lastName": "Minsafin"
+}

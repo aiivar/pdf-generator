@@ -1,0 +1,88 @@
+version: '3.3'
+
+services:
+
+  pdf-generator:
+    image: pdf-generator-app
+    container_name: pdf-generator
+    ports:
+      - 9090:9090
+    depends_on:
+      - postgres_pdf_db
+      - rabbitmq
+    environment:
+      - "SPRING_DATASOURCE_URL=jdbc:postgresql://postgres_pdf_db:5432/postgres_pdf_db"
+      - "SPRING_DATASOURCE_USERNAME=postgres"
+      - "SPRING_DATASOURCE_PASSWORD=postgres"
+      - "RABBITMQ_HOST=rabbitmq"
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: "10m"
+
+  pdf-web:
+    image: pdf-web-app
+    container_name: pdf-web
+    ports:
+      - 8080:8080
+    depends_on:
+      - postgres_pdf_db
+      - redis
+      - rabbitmq
+      - pdf-generator
+    environment:
+      - "SPRING_DATASOURCE_URL=jdbc:postgresql://postgres_pdf_db:5432/postgres_pdf_db"
+      - "SPRING_DATASOURCE_USERNAME=postgres"
+      - "SPRING_DATASOURCE_PASSWORD=postgres"
+      - "REDIS_HOST=redis"
+      - "REDIS_PORT=6379"
+      - "RABBITMQ_HOST=rabbitmq"
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: "10m"
+
+  postgres_pdf_db:
+    image: postgres
+    container_name: postgres_pdf_db
+    ports:
+      - 5434:5432
+    environment:
+      POSTGRES_DB: postgres_pdf_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: "10m"
+
+  redis:
+    image: redis
+    container_name: redis
+    ports:
+      - 6380:6379
+    volumes:
+      - redis-volume:/data
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: "10m"
+
+  rabbitmq:
+    image: rabbitmq
+    container_name: rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672
+
+volumes:
+  pgdata:
+    external: true
+  redis-volume:
+    external: true
